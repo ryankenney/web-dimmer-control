@@ -20,7 +20,6 @@
 			<scope>test</scope>
 		</dependency>
 
-<!--
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
@@ -41,38 +40,12 @@
 			<artifactId>jersey-media-moxy</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
--->
-
-<!--
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
--->
 
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
 			<version>9.3.0.M1</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-bundle</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-core</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -123,7 +96,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.github.ryankenney.hitachi_web_control.rest.RestServerNew</mainClass>
+									<mainClass>com.github.ryankenney.hitachi_web_control.rest.RestServer</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
