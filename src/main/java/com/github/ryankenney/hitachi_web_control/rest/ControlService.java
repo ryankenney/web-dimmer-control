@@ -15,10 +15,8 @@ public class ControlService {
 	@GET
 	@Path("speed/{speed}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public GenericResult setSpeed(@QueryParam("speed") double speed) {
-
-		// TODO [rkenney]: Implement
-
+	public GenericResult setSpeed(@QueryParam("speed") int speed) {
+		HardwareManagerSingleton.INSTANCE.setSpeed(speed);
 		return new GenericResult(RESULT_STATUS.OK);
 	}
 }

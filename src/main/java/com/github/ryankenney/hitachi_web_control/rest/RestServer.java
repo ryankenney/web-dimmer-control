@@ -14,17 +14,18 @@ public class RestServer {
 
 		ServletHolder jerseyServlet = context.addServlet(org.glassfish.jersey.servlet.ServletContainer.class, "/*");
 		jerseyServlet.setInitOrder(0);
-
 		jerseyServlet.setInitParameter("javax.ws.rs.Application",
 				RestApplication.class.getName());
-
 		jerseyServlet.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true"); 
+
+		HardwareManagerSingleton.INSTANCE.start();
 
 		try {
 			jettyServer.start();
 			jettyServer.join();
+			HardwareManagerSingleton.INSTANCE.stop();
 		} finally {
 			jettyServer.destroy();
-		   }
-    }
+		}
+	}
 }

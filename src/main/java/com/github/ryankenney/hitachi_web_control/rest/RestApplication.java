@@ -14,6 +14,7 @@ public class RestApplication extends Application {
 		// register REST modules
 		resources.add(StatusService.class);
 		resources.add(ControlService.class);
+		resources.add(GlobalExceptionMapper.class);
 
 		// Manually adding MOXyJSONFeature
 		resources.add(org.glassfish.jersey.moxy.json.MoxyJsonFeature.class);

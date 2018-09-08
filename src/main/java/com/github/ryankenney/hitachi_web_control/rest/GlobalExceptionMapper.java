@@ -4,13 +4,13 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 import com.github.ryankenney.hitachi_web_control.rest.GenericResult.RESULT_STATUS;
 
-// TODO [rkenney]: Remove if not properly registered with jetty
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 
@@ -20,9 +20,10 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 	public Response toResponse(Throwable e) {
 		// We generate a random string that we echo to the client so they can find the actual error in the logs
 		// (We don't want to leak stack traces out to the web.)
-		String errorRefernce = ""+RANDOM.nextLong()+"-"+RANDOM.nextLong()+"-"+RANDOM.nextLong();
+		String errorRefernce = ""+RANDOM.nextLong(0, Long.MAX_VALUE)+"-"+RANDOM.nextLong(0, Long.MAX_VALUE);
 		LOGGER.log(Level.WARNING, "Request Failed (errorReference: "+errorRefernce+")", e);
 		return Response.status(500).entity(
-				new GenericResult(RESULT_STATUS.ERROR, errorRefernce)).type("text/plain").build();
+				new GenericResult(RESULT_STATUS.ERROR, errorRefernce)).
+					type(MediaType.APPLICATION_JSON).build();
 	}
 }
