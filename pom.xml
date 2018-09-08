@@ -87,6 +87,7 @@
 							<filters>
 								<filter>
 									<artifact>*:*</artifact>
+									<!-- Excluding signatures prevents jar execution errors -->
 									<excludes>
 										<exclude>META-INF/*.SF</exclude>
 										<exclude>META-INF/*.DSA</exclude>
