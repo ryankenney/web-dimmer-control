@@ -12,7 +12,7 @@ public class RestServer {
 		ResourceHandler staticContentHandler = new ResourceHandler();
 		staticContentHandler.setDirectoriesListed(true);
 		staticContentHandler.setWelcomeFiles(new String[]{ "index.html" });
-		staticContentHandler.setResourceBase("src/webapp/");
+		staticContentHandler.setResourceBase("src/main/webapp/");
 
 		ServletContextHandler restHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
 		restHandler.setContextPath("/rest/");
