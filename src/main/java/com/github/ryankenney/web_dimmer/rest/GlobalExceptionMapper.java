@@ -1,4 +1,4 @@
-package com.github.ryankenney.hitachi_web_control.rest;
+package com.github.ryankenney.web_dimmer.rest;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import com.github.ryankenney.hitachi_web_control.rest.GenericResult.RESULT_STATUS;
+import com.github.ryankenney.web_dimmer.rest.GenericResult.RESULT_STATUS;
 
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {

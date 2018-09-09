@@ -1,4 +1,4 @@
-package com.github.ryankenney.hitachi_web_control.rest;
+package com.github.ryankenney.web_dimmer.rest;
 
 public class GenericResult {
 

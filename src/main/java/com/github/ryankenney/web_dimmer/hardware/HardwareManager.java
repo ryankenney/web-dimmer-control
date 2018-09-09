@@ -1,4 +1,4 @@
-package com.github.ryankenney.hitachi_web_control.hardware;
+package com.github.ryankenney.web_dimmer.hardware;
 
 import java.util.Date;
 import java.util.concurrent.Executors;
