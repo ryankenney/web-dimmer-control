@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class HardwareManager {
 
-	private static final long TIMEOUT_SECS = 20;
+	private static final long TIMEOUT_SECS = 10;
 	private static final Logger LOGGER = Logger.getLogger(HardwareManager.class.getName());
 
 	private final HardwareController controller = new HardwareController();
