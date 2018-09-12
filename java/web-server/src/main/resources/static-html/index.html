@@ -61,12 +61,12 @@ function setCurrentValue(value) {
 }
 
 function sendSpeed() {
-	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/control/speed/"+currentValue);
+	var restUrl = window.location.toString().replace("html/index.html", "control/speed/"+currentValue);
 	$.get(restUrl);
 }
 
 function sendSpeedAndRepeat() {
-	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/control/speed/"+currentValue);
+	var restUrl = window.location.toString().replace("html/index.html", "control/speed/"+currentValue);
 	$.get(restUrl, function() {
 		setTimeout(sendSpeedAndRepeat, 1000);
 	}).fail(function() {
@@ -75,7 +75,7 @@ function sendSpeedAndRepeat() {
 }
 
 function getStatusAndRepeat() {
-	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/status");
+	var restUrl = window.location.toString().replace("html/index.html", "status");
 	$.get(restUrl, function() {
 		$('#server-status').html('Status: Online');	
 		$('#server-status').removeClass("status offline").addClass("status online");	

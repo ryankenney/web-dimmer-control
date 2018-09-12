@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.io.IOUtils;
 
 
-@Path("/html")
+@Path("html")
 public class HtmlService {
 
 	@GET
