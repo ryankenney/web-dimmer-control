@@ -1,0 +1,12 @@
+[Unit]
+Description=web-dimmer web server
+After=syslog.target
+
+[Service]
+SyslogIdentifier=web-dimmer
+ExecStart=/usr/bin/java -jar <<JAR_PATH>> web-server 
+User=<<SERVICE_USER>>
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

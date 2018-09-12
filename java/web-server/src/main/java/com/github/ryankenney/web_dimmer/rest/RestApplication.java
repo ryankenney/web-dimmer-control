@@ -14,6 +14,7 @@ public class RestApplication extends Application {
 		// register REST modules
 		resources.add(StatusService.class);
 		resources.add(ControlService.class);
+		resources.add(HtmlService.class);
 		resources.add(GlobalExceptionMapper.class);
 
 		// Manually adding MOXyJSONFeature

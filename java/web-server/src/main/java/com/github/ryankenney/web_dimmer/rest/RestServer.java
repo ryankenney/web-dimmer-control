@@ -7,7 +7,8 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 public class RestServer {
-	public static void main(String[] args) throws Exception {
+
+	public void run() {
 
 		ResourceHandler staticContentHandler = new ResourceHandler();
 		staticContentHandler.setDirectoriesListed(true);
@@ -33,6 +34,10 @@ public class RestServer {
 			jettyServer.start();
 			jettyServer.join();
 			HardwareManagerSingleton.INSTANCE.stop();
+		}
+		// This broad catch comes form the Jetty methods
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		} finally {
 			jettyServer.destroy();
 		}

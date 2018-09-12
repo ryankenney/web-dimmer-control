@@ -1,0 +1,108 @@
+<html>
+<style>
+.page {
+	height: 100%;
+}
+
+.status {
+	background-color: transparent;
+	border: none;
+	margin: 5px;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1em;
+	width: 100%;
+	height: 7%;
+}
+
+.status.online {
+	color: green;
+}
+
+.status.offline {
+	color: red;
+}
+
+.button {
+	background-color: #0052cc; /* blue */
+	border-radius: 25px;
+	border-color: white;
+	border: none;
+	margin: 5px;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1em;
+	width: 100%;
+	height: 7%;
+}
+
+.button.active {
+	background-color: #ff8000; /* orange */
+}
+</style>
+
+<script src="jquery-3.3.1.min.js"></script>
+
+<script>
+var currentValue = 0;
+
+function setCurrentValue(value) {
+	currentValue = value;
+	// Update look
+	$("[id^=button-]").removeClass("button active").addClass("button");
+	$("#button-"+(value/10)).addClass("button active");
+	// Send immediately
+	sendSpeed();
+}
+
+function sendSpeed() {
+	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/control/speed/"+currentValue);
+	$.get(restUrl);
+}
+
+function sendSpeedAndRepeat() {
+	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/control/speed/"+currentValue);
+	$.get(restUrl, function() {
+		setTimeout(sendSpeedAndRepeat, 1000);
+	}).fail(function() {
+		setTimeout(sendSpeedAndRepeat, 1000);
+	});
+}
+
+function getStatusAndRepeat() {
+	var restUrl = window.location.toString().replace("rest/html/index.html", "rest/status");
+	$.get(restUrl, function() {
+		$('#server-status').html('Status: Online');	
+		$('#server-status').removeClass("status offline").addClass("status online");	
+		setTimeout(getStatusAndRepeat, 5000);
+	}).fail(function() {
+		$('#server-status').html('Status: Offline');	
+		$('#server-status').removeClass("status online").addClass("status offline");	
+		setTimeout(getStatusAndRepeat, 5000);
+	});
+}
+</script>
+
+<body onload="sendSpeedAndRepeat(); getStatusAndRepeat(); ">
+	<div class="page">
+		<div><button id="server-status" class="status online" type="button">Status: Online</button></div>
+
+		<div><button id="button-0"  class="button active" type="button" onClick="setCurrentValue(0)">0</button></div>
+		<div><button id="button-1"  class="button" type="button" onClick="setCurrentValue(10)">1</button></div>
+		<div><button id="button-2"  class="button" type="button" onClick="setCurrentValue(20)">2</button></div>
+		<div><button id="button-3"  class="button" type="button" onClick="setCurrentValue(30)">3</button></div>
+		<div><button id="button-4"  class="button" type="button" onClick="setCurrentValue(40)">4</button></div>
+		<div><button id="button-5"  class="button" type="button" onClick="setCurrentValue(50)">5</button></div>
+		<div><button id="button-6"  class="button" type="button" onClick="setCurrentValue(60)">6</button></div>
+		<div><button id="button-7"  class="button" type="button" onClick="setCurrentValue(70)">7</button></div>
+		<div><button id="button-8"  class="button" type="button" onClick="setCurrentValue(80)">8</button></div>
+		<div><button id="button-9"  class="button" type="button" onClick="setCurrentValue(90)">9</button></div>
+		<div><button id="button-10" class="button" type="button" onClick="setCurrentValue(100)">10</button></div>
+	</div>
+</body>
+</html>
