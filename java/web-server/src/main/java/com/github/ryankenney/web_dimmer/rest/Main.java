@@ -20,6 +20,7 @@ public class Main {
 			new Installer().installService(getJar());
 			break;
 		case "uninstall-service":
+			new Installer().uninstallService();
 			break;
 		default:
 			printUsageAndExit();
