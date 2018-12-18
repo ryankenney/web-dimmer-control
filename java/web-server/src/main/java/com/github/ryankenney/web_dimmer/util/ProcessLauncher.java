@@ -2,10 +2,6 @@ package com.github.ryankenney.web_dimmer.util;
 
 import java.io.ByteArrayInputStream;
 
-import jacle.common.io.CloseablesExt;
-import jacle.common.io.RuntimeIOException;
-import jacle.common.lang.RuntimeInterruptedException;
-
 public class ProcessLauncher {
 
 	public static class Result {
@@ -132,7 +128,7 @@ public class ProcessLauncher {
 		} catch (Exception e) {
 			throw new RuntimeIOException("Failed to launch process", e);
 		} finally {
-			CloseablesExt.closeQuietly(stdinStream);
+			CloseablesExt.close(stdinStream);
 		}
 	}
 }

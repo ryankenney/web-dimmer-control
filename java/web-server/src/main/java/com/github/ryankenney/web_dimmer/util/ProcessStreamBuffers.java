@@ -11,9 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.output.CloseShieldOutputStream;
 import org.apache.commons.io.output.TeeOutputStream;
 
-import jacle.common.io.CloseablesExt;
 import jacle.common.lang.JavaUtil;
-import jacle.common.thread.NamedThreadFactory;
 
 /**
  * <p>
@@ -106,8 +104,8 @@ public class ProcessStreamBuffers implements Closeable {
 	 * 
 	 */
 	public void interrupt() {
-		CloseablesExt.closeQuietly(processInputStream);
-		CloseablesExt.closeQuietly(processErrorStream);
+		CloseablesExt.close(processInputStream);
+		CloseablesExt.close(processErrorStream);
 	}
 
 	/**
@@ -145,7 +143,7 @@ public class ProcessStreamBuffers implements Closeable {
 	 */
 	@Override
 	public void close() {
-		CloseablesExt.closeQuietly(stdoutBuffer);
-		CloseablesExt.closeQuietly(stderrBuffer);
+		CloseablesExt.close(stdoutBuffer);
+		CloseablesExt.close(stderrBuffer);
 	}
 }
